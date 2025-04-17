@@ -3,378 +3,1261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESRD</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>ESRD App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
     
             @font-face {
-  font-family: 'gg';
+  font-family: 'gff';
   src: url('font.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'gg', sans-serif;
+            font-family: 'gff', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1a0b33 0%, #0d0521 100%);
-            color: white;
+            background-color: #fff;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
         }
 
-        /* Background particles */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* App container */
+        .app-container {
             width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Glow effect */
-        .glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(93,60,176,0.2) 0%, rgba(93,60,176,0) 70%);
-            border-radius: 50%;
-            z-index: 1;
-            animation: pulse 6s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(0.8); }
-        }
-
-        .container {
+            height:100vh;
+            background-color: #000;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .logo-container {
-            margin-bottom: 40px;
             position: relative;
-            width: 200px;
-            height: 200px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header */
+        .header {
+            padding: 16px 24px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .logo {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            animation: logoReveal 1.5s ease-out forwards;
-            opacity: 0;
-            transform: scale(0.5);
-        }
-
-        @keyframes logoReveal {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .logo-ring {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: spin 20s linear infinite;
-        }
-
-        .logo-ring:before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            width: 12px;
-            height: 12px;
-            background: #5d3cb0;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #8a6de9;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .title {
-            margin-bottom: 10px;
-            font-size: 32px;
+        .header-title {
+            font-size: 20px;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(90deg, #ffffff, #d0c1ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(93,60,176,0.3);
-            animation: fadeIn 1s ease-out 0.5s forwards;
-            opacity: 0;
         }
 
-        .subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 50px;
-            animation: fadeIn 1s ease-out 0.8s forwards;
-            opacity: 0;
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .header-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #333;
+            font-size: 12px;
         }
 
-        .enter-button {
-            background: linear-gradient(135deg, #5d3cb0, #8a6de9);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(93,60,176,0.5);
+        .notification-icon {
             position: relative;
-            overflow: hidden;
-            animation: buttonReveal 1s ease-out 1.1s forwards;
-            opacity: 0;
-            transform: translateY(20px);
         }
 
-        @keyframes buttonReveal {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .enter-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(93,60,176,0.6);
-        }
-
-        .enter-button:active {
-            transform: translateY(-2px);
-        }
-
-        .enter-button::after {
-            content: '';
+        .notification-badge {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            animation: shine 3s infinite;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background-color: #ff3b30;
+            border-radius: 50%;
         }
 
-        @keyframes shine {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
+        /* Content area */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
         }
 
-        /* Loading animation for transition */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a0b33;
-            z-index: 100;
+        /* Hide scrollbar but allow scrolling */
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Live matches */
+        .live-matches {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .live-matches::-webkit-scrollbar {
+            display: none;
+        }
+
+        .match-card {
+            background-color: #111;
+            border-radius: 12px;
+            padding: 12px;
+            min-width: 160px;
+        }
+
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .team-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .team-name {
+            font-size: 14px;
+        }
+
+        .live-badge {
+            background-color: #ff3b30;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .score-display {
             display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            gap: 4px;
+            margin-top: 8px;
         }
 
-        .loading-overlay.active {
-            opacity: 1;
-            pointer-events: all;
+        .score {
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
+        .score.winning {
+            color: #fff;
+        }
+
+        .score-separator {
+            color: #555;
+        }
+
+        /* Tournament card */
+        .tournament-card {
+            background-color: #222;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .tournament-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .tournament-icon {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border-top-color: #5d3cb0;
-            animation: spin 1s infinite linear;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tournament-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .tournament-date {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .tournament-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 8px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: #222;
+        }
+
+        /* News section */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .news-thumbnail {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            background-color: #222;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .news-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            flex: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .news-meta span {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .news-title {
+            font-size: 14px;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .news-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* Matches list */
+        .section-header {
+            font-size: 12px;
+            font-weight: 500;
+            color: #777;
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+
+        .match-item {
+            background-color: #111;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .tournament-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tournament-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .tournament-name {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .match-time {
+            text-align: right;
+        }
+
+        .time {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .time-remaining {
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Bottom navigation */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #111;
+            padding: 12px 24px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: white;
+        }
+
+        .nav-icon {
+            font-size: 18px;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .screen.active {
+            display: flex;
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 28px;
+        @media (max-height: 700px) {
+            .app-container {
+                height: 600px;
             }
-            
-            .subtitle {
-                font-size: 14px;
-                margin-bottom: 40px;
+        }
+
+        @media (max-height: 600px) {
+            .app-container {
+                height: 500px;
             }
-            
-            .logo-container {
-                width: 160px;
-                height: 160px;
-                margin-bottom: 30px;
+        }
+
+        @media (max-width: 400px) {
+            .app-container {
+                max-width: 100%;
+                height: 100vh;
+                border-radius: 0;
             }
-            
-            .logo {
-                width: 140px;
-                height: 140px;
+        }
+        
+            /* Main container */
+        .container1 {
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Top section */
+        .section1 {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .button1 {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Dropdown section */
+        .section2 {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown1 {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 14px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
+
+        /* Table section */
+        .section3 {
+            padding: 0 0 20px 0;
+        }
+
+        /* Table header */
+        .row1 {
+            display: grid;
+            grid-template-columns: 40px 1fr 60px 60px 60px;
+            padding: 12px 20px;
+            background-color: #111;
+            font-size: 12px;
+            font-weight: 600;
+            color: #aaa;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .col1 {
+            display: flex;
+            align-items: center;
+        }
+
+        .col1.sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .col1.sortable:after {
+            content: "↕";
+            margin-left: 4px;
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        .col1.sortable.asc:after {
+            content: "↑";
+            opacity: 1;
+        }
+
+        .col1.sortable.desc:after {
+            content: "↓";
+            opacity: 1;
+        }
+
+        /* Table body */
+        .container2 {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        /* Hide scrollbar but allow scrolling */
+        .container2::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container2 {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Team row */
+        .row2 {
+            display: grid;
+            grid-template-columns: 40px 1fr 60px 60px 60px;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .row2:last-child {
+            border-bottom: none;
+        }
+
+        .row2:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Position */
+        .text2 {
+            font-weight: 600;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .text2.gold {
+            color: gold;
+        }
+
+        .text2.silver {
+            color: silver;
+        }
+
+        .text2.bronze {
+            color: #cd7f32; /* Bronze */
+        }
+
+        /* Team cell */
+        .container3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon1 {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: #333;
+            flex-shrink: 0;
+        }
+
+        .text3 {
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Points */
+        .text4 {
+            font-weight: 500;
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .text5 {
+            font-weight: 600;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Legend */
+        .section4 {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .container4 {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .icon2 {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 320px) {
+            .row1, .row2 {
+                grid-template-columns: 30px 1fr 50px 50px 50px;
+                padding: 10px 15px;
+                font-size: 11px;
             }
-            
-            .logo-ring {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .enter-button {
-                padding: 12px 35px;
-                font-size: 16px;
+
+            .icon1 {
+                width: 25px;
+                height: 25px;
+                font-size: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background particles -->
-    <div class="particles" id="particles"></div>
-    
-    <!-- Glow effect -->
-    <div class="glow"></div>
-    
-    <!-- Main content -->
-    <div class="container">
-        <div class="logo-container">
-            <div class="logo-ring"></div>
-            <img src="logo.png" alt="Roshn Saudi League Logo" class="logo" id="league-logo">
+    <div class="app-container">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen active">
+            <div class="header">
+                <div class="header-left">
+                    <div class="header-icon">🕹️</div>
+                    <h1 class="header-title">ESRD Game Division</h1>
+                    <i class="fas fa-chevron-right" style="color: #777; font-size: 12px;"></i>
+                </div>
+                <div class="notification-icon">
+                    <i class="fas fa-bell" style="color: #777;"></i>
+                    <div class="notification-badge"></div>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Live Matches -->
+                <div class="live-matches">
+                    <!-- NaVi vs FURIA -->
+                    <div class="match-card">
+                        <div class="team-row">
+                            <div class="team-info">
+                                <div class="team-icon" style="background-color: #fff; color: #000;">N</div>
+                                <div class="team-name">Nill</div>
+                            </div>
+                            <div class="live-badge">LIVE</div>
+                        </div>
+                        <div class="team-row">
+                            <div class="team-info">
+                                <div class="team-icon" style="background-color: #333;">N</div>
+                                <div class="team-name">Nill</div>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="score winning">0</span>
+                            <span class="score-separator">-</span>
+                            <span class="score">0</span>
+                        </div>
+                    </div>
+
+                    <!-- K23 vs forZe -->
+                    <div class="match-card">
+                        <div class="team-row">
+                            <div class="team-info">
+                                <div class="team-icon" style="background-color: #fff; color: #000;">N</div>
+                                <div class="team-name">Nill</div>
+                            </div>
+                            <div class="live-badge">LIVE</div>
+                        </div>
+                        <div class="team-row">
+                            <div class="team-info">
+                                <div class="team-icon" style="background-color: #333;">N</div>
+                                <div class="team-name">Nill</div>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="score">0</span>
+                            <span class="score-separator">-</span>
+                            <span class="score">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tournament Card -->
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <div class="tournament-icon">🏆</div>
+                        <div class="tournament-info">
+                            <h3>VANGALOS 2025</h3>
+                            <div class="tournament-date">Soon</div>
+                        </div>
+                    </div>
+                    <div class="tournament-actions">
+                        <div class="btn btn-outline">Overview</div>
+                        <div class="btn btn-primary">Matches</div>
+                    </div>
+                </div>
+
+                <!-- News Section -->
+                <h2 class="section-title">Top news</h2>
+
+                <!-- News Item 1 -->
+                <div class="news-item">
+                    <div class="news-thumbnail">
+                        <img src="post1.png" alt="News thumbnail">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span>17 APR 2025</span>
+                            <span>•</span>
+                            <span>ESRD</span>
+                        </div>
+                        <h3 class="news-title">ESRD Game Division Announced There Next Tournament called VANGALOS .</h3>
+                        <div class="news-stats">
+                            <div class="stat">
+                                <!--<i class="fas fa-thumbs-up"></i>
+                                <span>156</span> -->
+                            </div>
+                            <div class="stat">
+                               <!-- <i class="fas fa-comment"></i>
+                                <span>44</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Item 2 -->
+                <div class="news-item">
+                    <div class="news-thumbnail">
+                        <img src="post2.png" alt="News thumbnail">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span>17 APR 2025</span>
+                            <span>•</span>
+                            <span>ESRD</span>
+                        </div>
+                        <h3 class="news-title">ESRD Choose Bermuda 2.0 Map For Final Match Of ESRD League.</h3>
+                    </div>
+                </div>
+
+                <!-- News Item 3 -->
+                <div class="news-item">
+                    <div class="news-thumbnail">
+                        <img src="post3.png" alt="News thumbnail">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span>17 APR 2025</span>
+                            <span>•</span>
+                            <span>ESRD</span>
+                        </div>
+                        <h3 class="news-title">ESRD Game Division will publish ESRD League Semi Final Date At 18th April .</h3>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h1 class="title">ESRD Game Division</h1>
-        <p class="subtitle">Organizing professional Free Fire tournaments for players of all skill levels.</p>
-        <button class="enter-button" id="enter-btn">ENTER</button>
+
+        <!-- Matches Screen -->
+        <div id="matches-screen" class="screen">
+            <div class="header">
+                <h1 class="header-title">Matches</h1>
+                <div class="header-actions" style="display: flex; gap: 16px;">
+                    <i class="fas fa-list" style="color: #777;"></i>
+                    <i class="fas fa-bell" style="color: #777;"></i>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Live Section -->
+                <h2 class="section-header">LIVE</h2>
+
+                <!-- Dreamhack Masters Match -->
+                <div class="match-item">
+                    <div class="match-header">
+                        <div class="tournament-label">
+                            <div class="tournament-color" style="background-color: #333;"></div>
+                            <div class="tournament-name">ESRD League Group 1 Semi Final</div>
+                        </div>
+                        <div class="live-badge">LIVE</div>
+                    </div>
+
+                    <!-- Team 1 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #fff; color: #000;">N</div>
+                            <div class="team-name">Nill</div>
+                        </div>
+                        <div style="color: #fff;">0</div>
+                    </div>
+
+                    <!-- Team 2 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #333;">N</div>
+                            <div class="team-name">Nill</div>
+                        </div>
+                        <div>0</div>
+                    </div>
+                </div>
+
+                <!-- Spring Sweet Spring Match -->
+                <div class="match-item">
+                    <div class="match-header">
+                        <div class="tournament-label">
+                            <div class="tournament-color" style="background-color: #333;"></div>
+                            <div class="tournament-name">ESRD League Group 2 Semi Final</div>
+                        </div>
+                        <div class="live-badge">LIVE</div>
+                    </div>
+
+                    <!-- Team 1 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #fff; color: #000;">N</div>
+                            <div class="team-name">Nill</div>
+                        </div>
+                        <div>0</div>
+                    </div>
+
+                    <!-- Team 2 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #333;">N</div>
+                            <div class="team-name">Nill</div>
+                        </div>
+                        <div>0</div>
+                    </div>
+                </div>
+
+                <!-- Today Section -->
+                <h2 class="section-header" style="margin-top: 24px;">18 APR 2025</h2>
+
+                <!-- Dreamhack Masters Match -->
+                <div class="match-item">
+                    <div class="match-header">
+                        <div class="tournament-label">
+                            <div class="tournament-color" style="background-color: #333;"></div>
+                            <div class="tournament-name">Pre Match</div>
+                        </div>
+                    </div>
+
+                    <!-- Team 1 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #fff; color: #000;">E</div>
+                            <div class="team-name">ESRed</div>
+                        </div>
+                        <div class="match-time">
+                            <div class="time">20:45</div>
+                            <div class="time-remaining">paused</div>
+                        </div>
+                    </div>
+
+                    <!-- Team 2 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #333;">HC</div>
+                            <div class="team-name">Holocaust Esport's</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spring Sweet Spring Match -->
+                <div class="match-item">
+                    <div class="match-header">
+                        <div class="tournament-label">
+                            <div class="tournament-color" style="background-color: #333;"></div>
+                            <div class="tournament-name">None</div>
+                        </div>
+                    </div>
+
+                    <!-- Team 1 -->
+                    <div class="team-row">
+                        <div class="team-info">
+                            <div class="team-icon" style="background-color: #fff; color: #000;">-</div>
+                            <div class="team-name">Nill</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active" data-screen="home-screen">
+                <i class="fas fa-home nav-icon"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" data-screen="matches-screen">
+                <i class="fas fa-list nav-icon"></i>
+                <span>Matches</span>
+            </div>
+            <div class="nav-item" data-screen="result-screen">
+                <i class="fas fa-trophy nav-icon"></i>
+                <span>Results</span>
+            </div>
+           <!-- <div class="nav-item">
+                <i class="fas fa-newspaper nav-icon"></i>
+                <span>News</span> -->
+            </div>
+        </div>
     </div>
-    
-    <!-- Loading overlay for transition -->
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="loader"></div>
-    </div>
-    
-    <script>
-        // Create background particles
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 30;
         
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random position
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            
-            // Random size
-            const size = Math.random() * 5 + 2;
-            
-            // Random animation delay
-            const delay = Math.random() * 15;
-            
-            particle.style.left = `${posX}%`;
-            particle.style.top = `${posY}%`;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.animationDelay = `${delay}s`;
-            
-            particlesContainer.appendChild(particle);
-        }
-        
-        // Handle logo loading
-        const logo = document.getElementById('league-logo');
-        
-        // If the logo fails to load, use a placeholder
-        logo.onerror = function() {
-            this.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 24 24" fill="%235d3cb0"%3E%3Cpath d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"%3E%3C/path%3E%3Cpath d="M9 12l2 2 4-4" stroke="%23ffffff" stroke-width="2" fill="none"%3E%3C/path%3E%3C/svg%3E';
-        };
-        
-        // Handle enter button click
-        const enterBtn = document.getElementById('enter-btn');
-        const loadingOverlay = document.getElementById('loading-overlay');
-        
-        enterBtn.addEventListener('click', function() {
-            // Show loading overlay
-            loadingOverlay.classList.add('active');
-            
-            // Simulate loading and redirect
-            setTimeout(function() {
-                window.location.href = 'home.html';
-            }, 1500);
+        <!-- Matches Screen -->
+        <div id="result-screen" class="screen">
+                <div class="container1">
+        <!-- Header -->
+        <div class="section1">
+            <h1 class="text1">Leaderboard</h1>
+            <button class="button1">
+                <i class="fas fa-filter"></i>
+                <span>Filter</span>
+            </button>
+        </div>
+
+        <!-- Tournament selector -->
+        <div class="section2">
+            <select class="dropdown1" id="dropdown1">
+                <option value="tournament1">ESRD League</option>
+                <option value="tournament2">.</option>
+                <option value="tournament3">.</option>
+            </select>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="section3">
+            <!-- Table header -->
+            <div class="row1">
+                <div class="col1">#</div>
+                <div class="col1">Team</div>
+                <div class="col1 sortable" data-sort="total">Total</div>
+                <div class="col1 sortable" data-sort="position">Position</div>
+                <div class="col1 sortable" data-sort="won">Kill</div>
+            </div>
+
+            <!-- Table body -->
+            <div class="container2" id="container2">
+                <!-- Team rows will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="section4">
+            <div class="container4">
+                <div class="icon2" style="background-color: gold;"></div>
+                <span>Champion</span>
+            </div>
+            <div class="container4">
+                <div class="icon2" style="background-color: silver;"></div>
+                <span>Runner-up</span>
+            </div>
+            <div class="container4">
+                <div class="icon2" style="background-color: #cd7f32;"></div>
+                <span>3rd Place</span>
+            </div>
+            <div class="container4">
+                <div class="icon2" style="background-color: #333;"></div>
+                <span>Playoffs</span>
+            </div>
+        </div>
+        </div>
+
+ 
+        <script>
+                // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Update active nav item
+                document.querySelectorAll('.nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // Show corresponding screen
+                const screenId = this.getAttribute('data-screen');
+                if (screenId) {
+                    document.querySelectorAll('.screen').forEach(screen => {
+                        screen.classList.remove('active');
+                    });
+                    document.getElementById(screenId).classList.add('active');
+                }
+            });
+        });
+
+        // Tournament buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const buttons = this.parentElement.querySelectorAll('.btn');
+                buttons.forEach(button => {
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-outline');
+                });
+                this.classList.remove('btn-outline');
+                this.classList.add('btn-primary');
+            });
         });
         
-        // Add pulse effect to button
-        setInterval(() => {
-            enterBtn.classList.add('pulse');
-            setTimeout(() => {
-                enterBtn.classList.remove('pulse');
-            }, 1000);
-        }, 3000);
+        </script>
+        <script>
+        
+        // Sample data for the leaderboard
+        const data1 = [
+            { 
+                rank: 1, 
+                teamName: "DAREDEVIL", 
+                teamCode: "D", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 63, 
+                posPoints: 26, 
+                winPoints: 37 
+            },
+            { 
+                rank: 2, 
+                teamName: "UR FINISHER", 
+                teamCode: "UF", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 44, 
+                posPoints: 23, 
+                winPoints: 21 
+            },
+            { 
+                rank: 3, 
+                teamName: "Furious Falcon", 
+                teamCode: "FUF", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 38, 
+                posPoints: 22, 
+                winPoints: 16 
+            },
+            { 
+                rank: 4, 
+                teamName: "Domain e-sports", 
+                teamCode: "DES", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 37, 
+                posPoints: 25, 
+                winPoints: 12 
+            },
+            { 
+                rank: 5, 
+                teamName: "ONE ONLY ES", 
+                teamCode: "OE", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 30, 
+                posPoints: 16, 
+                winPoints: 14 
+            },
+            { 
+                rank: 6, 
+                teamName: "REVOLUTIONARY KN", 
+                teamCode: "RK", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 25, 
+                posPoints: 14, 
+                winPoints: 11 
+            },
+            { 
+                rank: 7, 
+                teamName: "SAVAGE HUNTER", 
+                teamCode: "SH", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 14, 
+                posPoints: 11, 
+                winPoints: 3 
+            },
+            { 
+                rank: 8, 
+                teamName: "None", 
+                teamCode: "N", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 0, 
+                posPoints: 0, 
+                winPoints: 0 
+            },
+            { 
+                rank: 9, 
+                teamName: "None", 
+                teamCode: "N", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 0, 
+                posPoints: 0, 
+                winPoints: 0 
+            },
+            { 
+                rank: 10, 
+                teamName: "None", 
+                teamCode: "N", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 0, 
+                posPoints: 0, 
+                winPoints: 0 
+            },
+            { 
+                rank: 11, 
+                teamName: "None", 
+                teamCode: "N", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 0, 
+                posPoints: 0, 
+                winPoints: 0 
+            },
+            { 
+                rank: 12, 
+                teamName: "None", 
+                teamCode: "N", 
+                bgColor: "#333", 
+                textColor: "#fff", 
+                totalPoints: 0, 
+                posPoints: 0, 
+                winPoints: 0 
+            }
+        ];
+
+        // Function to render the leaderboard
+        function function1(data) {
+            const element1 = document.getElementById('container2');
+            element1.innerHTML = '';
+
+            data.forEach(item => {
+                const element2 = document.createElement('div');
+                element2.className = 'row2';
+
+                // Position with special styling for top 3
+                let rankClass = '';
+                if (item.rank === 1) rankClass = 'gold';
+                else if (item.rank === 2) rankClass = 'silver';
+                else if (item.rank === 3) rankClass = 'bronze';
+                
+                element2.innerHTML = `
+                    <div class="text2 ${rankClass}">${item.rank}</div>
+                    <div class="container3">
+                        <div class="icon1" style="background-color: ${item.bgColor}; color: ${item.textColor}">
+                            ${item.teamCode}
+                        </div>
+                        <div class="text3">${item.teamName}</div>
+                    </div>
+                    <div class="text5">${item.totalPoints}</div>
+                    <div class="text4">${item.posPoints}</div>
+                    <div class="text4">${item.winPoints}</div>
+                `;
+
+                element1.appendChild(element2);
+            });
+        }
+
+        // Initial render
+        function1(data1);
+
+        // Sorting functionality
+        let variable1 = { column: 'rank', direction: 'asc' };
+
+        document.querySelectorAll('.col1.sortable').forEach(element => {
+            element.addEventListener('click', function() {
+                const sortType = this.getAttribute('data-sort');
+                
+                // Toggle direction if same column, otherwise default to desc
+                if (variable1.column === sortType) {
+                    variable1.direction = variable1.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    variable1.column = sortType;
+                    variable1.direction = 'desc';
+                }
+                
+                // Update header classes
+                document.querySelectorAll('.col1.sortable').forEach(el => {
+                    el.classList.remove('asc', 'desc');
+                });
+                this.classList.add(variable1.direction);
+                
+                // Sort data
+                const sortedData = [...data1].sort((a, b) => {
+                    let value1, value2;
+                    
+                    if (sortType === 'total') {
+                        value1 = a.totalPoints;
+                        value2 = b.totalPoints;
+                    } else if (sortType === 'position') {
+                        value1 = a.posPoints;
+                        value2 = b.posPoints;
+                    } else if (sortType === 'won') {
+                        value1 = a.winPoints;
+                        value2 = b.winPoints;
+                    }
+                    
+                    if (variable1.direction === 'asc') {
+                        return value1 - value2;
+                    } else {
+                        return value2 - value1;
+                    }
+                });
+                
+                // Re-render with sorted data
+                function1(sortedData);
+            });
+        });
+
+        // Tournament selector
+        document.getElementById('dropdown1').addEventListener('change', function() {
+            // In a real app, you would fetch data for the selected tournament
+            // For this demo, we'll just show an alert
+            alert(`Selected tournament: ${this.options[this.selectedIndex].text}`);
+            
+            // You would typically fetch new data and re-render:
+            // fetchData(this.value).then(data => function1(data));
+        });
+
+        // Filter button
+        document.querySelector('.button1').addEventListener('click', function() {
+            // In a real app, you would show a filter modal/dropdown
+            alert('Filter options would appear here');
+        });
     </script>
 </body>
 </html>
